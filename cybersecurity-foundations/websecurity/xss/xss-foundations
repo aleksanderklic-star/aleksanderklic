@@ -1,1 +1,23 @@
+##  XSS, What Is It  (In progress)
 
+Cross-Site Scripting (XSS) is an injection vulnerability that allows an attacker to execute malicious JavaScript code in another user's browser.
+
+It occurs when a web application fails to properly validate or escape user input before rendering it in the page. As a result, the browser interprets that content as executable code instead of plain text.
+
+This can allow attackers to steal session cookies (if they are not protected with HttpOnly), capture credentials, modify the page content, or perform actions on behalf of the victim.
+
+## What the Problem Is
+
+The vulnerability exists because the application trusts user input without properly validating or escaping it. 
+
+JavaScript itself is not the problem. The issue arises when user-controlled data is rendered in the browser without proper filtering or output encoding, allowing attackers to inject malicious payloads that manipulate the webpage.
+
+## Injection Contexts
+
+In an HTML context, if user input is inserted inside an HTML element without proper escaping, an attacker may close the existing tag and inject a new one containing malicious code.
+
+For example, if the input is rendered inside an HTML element, the attacker could close the current tag and introduce a <script> tag.
+
+In a JavaScript context, something similar can happen. If user input is placed inside a string without proper validation, an attacker can break out of the string and append additional JavaScript code that will be executed by the browser.
+
+This demonstrates that the type of payload depends on the context in which the input is reflected (HTML, attribute, JavaScript, URL, etc.).
